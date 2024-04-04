@@ -10,81 +10,76 @@
     <p>Rock paper scissor game using javascript</p>
     <div class="space-y-6 space-x-6 ">
 
-        <button class="w-28 h-28 rounded-full shadow-lg  border-gray-100 border bg-gradient-to-br"
+        <button  class="w-28 h-28 rounded-full shadow-lg  border-gray-0 border bg-gradient-to-br"
         onclick="
-
-            // creating computer move for random rock or paper or scissor
-            let computerMove='';
-            const randomNumber=Math.random();
-            if (randomNumber>=0 && randomNumber<=1/3){
-                computerMove='rock';
-            }
-            else if(randomNumber>=1/3 && randomNumber<=2/3){
-                computerMove='paper';
-            }
-            else{
-                computerMove='scissors';
-            }
-            
-
-            // comparing the moves with computer
-            let result='';
-            if(computerMove === 'rock'){
-                result='tie;'
-            }
-            else if( computerMove === 'paper'){
-                result='you lose!!';
-            }
-            else if( computerMove === 'scissors'){
-                result='You win!';
-            }
-
-            // displaying the results in a popup
-            alert(`you picked rock. Computer picked ${computerMove}. ${result}`);
-
+            playGame('rock');
         ">ROCK</button>
-        <button class="w-28 h-28 rounded-full border bg-gradient-to-br border-gray-100 shadow-lg"
-        
+
+        <button class="w-28 h-28 rounded-full border bg-gradient-to-br border-gray-50 shadow-lg"      
         onclick="
-
-            // creating computer move for random rock or paper or scissor
-            let computerMove='';
-            const randomNumber=Math.random();
-            if (randomNumber>=0 && randomNumber<=1/3){
-                computerMove='rock';
-            }
-            else if(randomNumber>=1/3 && randomNumber<=2/3){
-                computerMove='paper';
-            }
-            else{
-                computerMove='scissors';
-            }
-            
-
-            // comparing the moves with computer
-            let result='';
-            if(computerMove === 'rock'){
-                result='You win!;'
-            }
-            else if( computerMove === 'paper'){
-                result='tie';
-            }
-            else if( computerMove === 'scissors'){
-                result='You Lose!!';
-            }
-
-            // displaying the results in a popup
-            alert(`you picked paper. Computer picked ${computerMove}. ${result}`);
-
+            playGame('paper');
         ">PAPER</button>
 
-
-        <button class="w-28 h-28 rounded-full border bg-gradient-to-br border-gray-100 shadow-lg"
-        
+        <button class="w-28 h-28 rounded-full border bg-gradient-to-br border-gray-50 shadow-lg"       
         onclick="
+            playGame('scissors') 
+        ">SCISSORS</button> 
+    </div>
 
-            // creating computer move for random rock or paper or scissor
-            let computerMove='';
+    <div class="mt-20 text-4xl font-thin">
+         Pick Your Move
+    </div>
+
+    <script>
+
+// javascript functions, parameters, function calls..!!!
+
+        function playGame(playerMove){
+            const computerMove=theComputerMove();
+            let result='';
+            // comparing the moves with computer
+            if(playerMove ==='rock'){
+                if(computerMove === 'rock'){
+                    result='tie;'
+                }
+                else if( computerMove === 'paper'){
+                    result='you lose!!';
+                }
+                else if( computerMove === 'scissors'){
+                    result='You win!';
+                }
+            }
+
+            else if(playerMove ==='paper'){
+                if(computerMove === 'rock'){
+                    result='You win!;'
+                }
+                else if( computerMove === 'paper'){
+                    result='tie';
+                }
+                else if( computerMove === 'scissors'){
+                    result='You Lose!!';
+                }
+            }
+
+
+            else if(playerMove === 'scissors'){
+                if(computerMove === 'rock'){
+                    result='You lose';
+                }
+                else if( computerMove === 'paper'){
+                    result='you win';
+                }
+                else if( computerMove === 'scissors'){
+                    result='tie';
+                }
+                }
+        // displaying the results in a popup
+        alert(`you picked ${playerMove}. Computer picked ${computerMove}. ${result}`);
+         }
+
+        function theComputerMove(){
+            
             const randomNumber=Math.random();
             if (randomNumber>=0 && randomNumber<=1/3){
                 computerMove='rock';
@@ -94,26 +89,11 @@
             }
             else{
                 computerMove='scissors';
-            }
-            
+            } 
 
-            // comparing the moves with computer
-            let result='';
-            if(computerMove === 'rock'){
-                result='You lose;'
-            }
-            else if( computerMove === 'paper'){
-                result='you win';
-            }
-            else if( computerMove === 'scissors'){
-                result='tie';
-            }
-
-            // displaying the results in a popup
-            alert(`you picked scissors. Computer picked ${computerMove}. ${result}`);
-
-        ">SCISSORS</button> 
-    </div>
+            return computerMove;
+        }
+    </script>
 
 </body>
 </html>
