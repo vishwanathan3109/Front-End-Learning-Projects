@@ -24,15 +24,33 @@
         onclick="
             playGame('scissors') 
         ">SCISSORS</button> 
+
+        <button class="w-28 h-28 rounded-full border bg-gradient-to-br border-gray-50 shadow-lg"       
+        onclick="
+            score.wins=0; 
+            score.loses=0;
+            score.tie=0;
+            alert('Your Score Was Reset')
+            localStorage.removeItem('score')
+            ">
+        RESET</button>
     </div>
 
     <div class="mt-20 text-4xl font-thin">
          Pick Your Move
     </div>
 
+
+    <!-- script -->
     <script>
 
 // javascript functions, parameters, function calls..!!!
+// JSON Built-in functions
+
+// JSON.parse(), JSON.stringify() , 
+// localStorage.setItem(), localStorage.getItem(), localStorage.removeItem()
+
+        let score= JSON.parse(localStorage.getItem('score'))||{wins:0,loses:0,tie:0}
 
         function playGame(playerMove){
             const computerMove=theComputerMove();
@@ -40,42 +58,59 @@
             // comparing the moves with computer
             if(playerMove ==='rock'){
                 if(computerMove === 'rock'){
-                    result='tie;'
+                    result='tie';
                 }
                 else if( computerMove === 'paper'){
                     result='you lose!!';
                 }
                 else if( computerMove === 'scissors'){
-                    result='You win!';
+                    result='you win!';
                 }
             }
 
             else if(playerMove ==='paper'){
                 if(computerMove === 'rock'){
-                    result='You win!;'
+                    result='you win!';
                 }
                 else if( computerMove === 'paper'){
                     result='tie';
                 }
                 else if( computerMove === 'scissors'){
-                    result='You Lose!!';
+                    result='you lose!!';
                 }
             }
 
 
             else if(playerMove === 'scissors'){
                 if(computerMove === 'rock'){
-                    result='You lose';
+                    result='you lose!!';
                 }
                 else if( computerMove === 'paper'){
-                    result='you win';
+                    result='you win!';
                 }
                 else if( computerMove === 'scissors'){
                     result='tie';
                 }
-                }
+            }
+
+            
+
+            if(result === 'you win!'){
+                score.wins +=1;
+            }
+
+            else if(result === 'you lose!!'){
+                score.loses +=1;
+            }
+
+            else if(result === 'tie'){
+                score.tie +=1;
+            }
+
+            localStorage.setItem('score',JSON.stringify(score));
+
         // displaying the results in a popup
-        alert(`you picked ${playerMove}. Computer picked ${computerMove}. ${result}`);
+            alert(`you picked ${playerMove}. Computer picked ${computerMove}. ${result} \n wins= ${score.wins}, loses= ${score.loses}, tie=${score.tie}`);
          }
 
         function theComputerMove(){
